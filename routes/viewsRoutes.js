@@ -1,14 +1,14 @@
 const express = require('express');
 const viewsController = require('../controller/viewsController');
 const authController = require('../controller/authController');
-const bookingController = require('../controller/bookingController');
+// const bookingController = require('../controller/bookingController');
 
 const router = express.Router();
 
 router.get(
   '/',
   authController.isLoggin,
-  bookingController.bookTour,
+  // bookingController.bookTour,
   viewsController.getOverview
 );
 router.get('/tour/:slug', authController.isLoggin, viewsController.getTour);
