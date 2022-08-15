@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controller/errorController');
@@ -24,6 +25,9 @@ app.enable('trust proxy');
 app.set('view engine', 'pug');
 
 // GLOBAL MIDDLEWARE
+app.use(cors());
+app.options('*', cors());
+
 app.use('/dist', express.static(path.resolve(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
