@@ -4,15 +4,22 @@
   "description": "Learn node express and mongodb",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js",
-    "start:front": "parcel ./public/js/index.js",
+    "start": "node server.js",
+    "dev": "NODE_ENV=production nodemon server.js",
+    "start:front": "parcel watch ./public/js/index.js",
+    "start:build": "parcel build ./public/js/index.js --dist-dir dist",
     "debug": "ndb server.js"
+  },
+  "targets": {
+    "default": {
+      "distDir": "./dist"
+    }
   },
   "author": "Ramdan Agus Saputra",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "core-js": "^3.24.1",
     "dotenv": "^16.0.1",
