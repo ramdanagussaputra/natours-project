@@ -58,3 +58,6 @@ payBtn?.addEventListener('click', async function () {
 
   this.textContent = 'Book tour now!';
 });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showPopUp('success', alertMessage, 15);

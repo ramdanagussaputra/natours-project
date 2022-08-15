@@ -41,7 +41,7 @@ exports.createSessions = catchAsync(async (req, res, next) => {
   // Create season
   const sessions = await stripe.checkout.sessions.create({
     // prettier-ignore
-    success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourId}&user=${req.user._id}&price=${tour.price}`,
+    success_url: `${req.protocol}://${req.get('host')}/?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     mode: 'payment',
     customer_email: req.user.email,

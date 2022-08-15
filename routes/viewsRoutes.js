@@ -5,6 +5,8 @@ const authController = require('../controller/authController');
 
 const router = express.Router();
 
+router.use(viewsController.alertMessage);
+
 router.get(
   '/',
   authController.isLoggin,

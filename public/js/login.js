@@ -7,13 +7,13 @@ export const hidePopUp = function () {
 };
 
 // SHOW POP UP
-export const showPopUp = function (type, message) {
+export const showPopUp = function (type, message, time = 5) {
   hidePopUp();
 
   const markup = `<div class="alert alert--${type}">${message}</div>`;
   document.body.insertAdjacentHTML('afterbegin', markup);
 
-  setTimeout(hidePopUp, 1300);
+  setTimeout(hidePopUp, time * 1000);
 };
 
 // SEND LOGIN DATA TO SERVER
