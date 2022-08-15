@@ -56,8 +56,6 @@ exports.resizeUserImg = catchAsync(async (req, res, next) => {
 });
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  console.log(req.file);
-  console.log(req.body);
   // CHECK IF USER INPUT PASSWORD
   if (req.body.password || req.body.passwordConfirm)
     throw new AppError(

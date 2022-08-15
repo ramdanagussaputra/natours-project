@@ -3,7 +3,7 @@
 export default async function () {
   try {
     const res = await axios({
-      url: 'http://localhost:3000/api/v1/users/logout',
+      url: '/api/v1/users/logout',
       method: 'GET',
     });
 

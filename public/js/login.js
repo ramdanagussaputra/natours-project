@@ -3,7 +3,6 @@
 // HIDE POP UP
 export const hidePopUp = function () {
   const el = document.querySelector('.alert');
-  console.log(el);
   if (el) el.remove();
 };
 
@@ -22,7 +21,7 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password,
@@ -37,9 +36,8 @@ export const login = async (email, password) => {
       }, 1500);
     }
 
-    console.log(res);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     showPopUp('error', err.response.data.message);
   }
 };

@@ -1,6 +1,5 @@
 /* eslint-disable */
 const locations = JSON.parse(document.getElementById('map').dataset.locations);
-console.log(locations);
 
 const key = 'wULMuXPVJGprvCiWgSVW';
 const map = new maplibregl.Map({

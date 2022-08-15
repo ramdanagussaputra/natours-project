@@ -6,15 +6,11 @@ const stripe = Stripe(
 
 export default async (tourId) => {
   try {
-    const res = await axios(
-      `http://localhost:3000/api/v1/booking/create-season/${tourId}`
-    );
+    const res = await axios(`/api/v1/booking/create-season/${tourId}`);
 
     const { sessions } = res.data;
-    console.log(sessions);
 
     // await stripe.redirectToCheckout({ sessionId: sessions.id });
-    // console.log('here');
     window.location.assign(`${sessions.url}`);
   } catch (err) {
     showPopUp('error', 'Payment failed');
