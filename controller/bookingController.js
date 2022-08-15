@@ -13,7 +13,9 @@ exports.createProduct = catchAsync(async (req, res, next) => {
   req.productStripe = await stripe.products.create({
     name: tour.name,
     description: tour.summary,
-    images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
+    images: [
+      `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+    ],
   });
 
   next();
@@ -85,7 +87,7 @@ const bookTour = async (session) => {
   });
 };
 
-exports.webhookCheckout = (req, res) => {
+exports.webhookCheckout = catchAsync(async (req, res, next) => {
   const sig = req.headers['stripe-signature'];
 
   let event;
@@ -102,10 +104,10 @@ exports.webhookCheckout = (req, res) => {
   }
 
   if (event.type === 'checkout.session.completed') {
-    bookTour(event.data.object);
+    await bookTour(event.data.object);
     res.status(200).send({ received: true });
   }
-};
+});
 
 exports.createBooking = factory.create(Booking);
 exports.getBookings = factory.getAll(Booking);
