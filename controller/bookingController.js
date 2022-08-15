@@ -79,7 +79,7 @@ const bookTour = async (session) => {
   const tour = session.client_reference_id;
   const user = User.findOne({ email: session.customer_email });
   const price = session.amount_total / 100;
-  console.log('IN THE EVENT');
+
   await Booking.create({
     tour,
     user,
@@ -93,7 +93,7 @@ exports.webhookCheckout = catchAsync(async (req, res, next) => {
   let event;
 
   try {
-    event = stripe.webhook.constructEvent(
+    event = stripe.webhooks.constructEvent(
       req.body,
       sig,
       process.env.STRIPE_WEBHOOK_KEY
@@ -103,9 +103,7 @@ exports.webhookCheckout = catchAsync(async (req, res, next) => {
     return;
   }
 
-  console.log(event.data.object);
   if (event.type === 'checkout.session.completed') {
-    console.log('IN THE EVENT');
     await bookTour(event.data.object);
   }
 
